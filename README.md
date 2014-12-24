@@ -3,23 +3,28 @@ Index
 	- Signup for an account
 
 Main
-	- Manage basic profile (player)
-	- Manage teams / club (manager)
+	- Navigate to different sections in the app
+
+Profile
+	- User information
 	
 Club
 	- Update club information (manager)
-	- Add (manager) / remove team to club (manager)
+	- Register team to tournament (manager)
 	- Add / remove club (manager)
 
 Team
 	- Update team information (manager)
-	- Add / remove team to club (manager)
+	- Add / remove team (manager)
 	- Move players between teams (manager)
+
+Tournament
+	- dates and teams registered
 	
 WORKFLOW:
 
-	*requirement: an account can only be part of one club
-	*requirement: a team is created for each tournament
+	- requirement: an account can only be part of one club
+	- requirement: a team is created for each tournament
 	
 	*acl: club managers approve / reject / remove players from club
 	*acl: club managers create / delete teams
