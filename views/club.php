@@ -51,7 +51,7 @@ font-size:inherit;
 </div>
 
 <!-- if club manager -->
-<check if="{{ @canRegisterTeam }}">
+<check if="{{ @isClubManager }}">
 <br />
 
 <div class="row">
@@ -76,16 +76,18 @@ font-size:inherit;
 <div>
 <h3>Members <small>There are {{ count(@members) }} members<check if="{{ @isClubManager }}"> ({{ count(@pendings) }} pending)</check>:</small></h3>
 <br/>
+<div class="row">
+
+<div class="col-sm-offset-1 col-sm-10">
 <table class="table">
 <check if="{{ @isClubManager }}">
 <repeat group="{{ @pendings }}" value="{{ @pending }}">
 <tr>
-<td><a href="/profile/{{ @pending.profile_id }}">{{ @pending.first_name . ' ' . @pending.last_name }}</a>
-	<span class="glyphicon glyphicon-question-sign" aria-hidden="true" style="margin-left:10px;"></span></td> 
+<td><a href="/profile/{{ @pending.profile_id }}">{{ @pending.first_name . ' ' . @pending.last_name }}</a></td> 
 <check if="{{ @isClubManager }}">
 <td><form action="/club/accept" method="POST">
 <input type="hidden" name="account_id" value="{{ @pending.account_id }}" />
-<input type="submit" value="Accept request" class="form-control" />
+<input type="submit" value="Accept request" class="form-control btn-success" />
 </form></td>
 <td><form action="/club/reject" method="POST">
 <input type="hidden" name="account_id" value="{{ @pending.account_id }}" />
@@ -95,7 +97,6 @@ font-size:inherit;
 </tr>
 </repeat>
 </check>
-
 <repeat group="{{ @members }}" value="{{ @member }}">
 <tr>
 <td><a href="/profile/{{ @member.profile_id }}">{{ @member.first_name . ' ' . @member.last_name }}</a></td>
@@ -110,18 +111,45 @@ font-size:inherit;
 </repeat>
 </table>
 </div>
+<div class="col-sm-1"></div>
+</div>
 
-<!-- if member -->
-<check if="{{ @isClubMember && !@isClubManager }}">
 <br/><br/>
-<div>
+
+<check if="{{ @isClubMember && !@isClubManager }}">
+<!-- if member -->
+<div class="row">
+<div class="col-sm-offset-1 col-sm-6">
 <form action="/club/leave" method="POST">
 <input type="submit" value="Leave club" class="form-control btn-danger" />
 </form>
 </div>
+<div class="col-sm-5"></div>
+</div>
 </check>
 
-<br/><br/>
+<check if="{{ @isPendingMember }}">
+<!-- pending member -->
+<div class="row">
+<div class="col-sm-offset-1 col-sm-6"><em>Your membership request is still pending.</em></div>
+<div class="col-sm-5"></div>
+</div>
+<div class="row">
+<div class="col-sm-offset-1 col-sm-6">
+<form action="/club/leave" method="POST">
+<input type="submit" value="Cancel Request" class="form-control btn-danger" />
+</form>
+</div>
+<div class="col-sm-5"></div>
+</div>
+</check>
+</div>
+
+<br/><hr>
+
+<div><button class="btn btn-danger" id="delete_club" type="button">DELETE CLUB</button></div>
+</check>
+</div>
 
 </div>
 
@@ -134,6 +162,16 @@ font-size:inherit;
 </footer>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
+<script>
+$('#delete_club').on('click', function() {
+	$.ajax({
+		url:'/club',
+		method:'DELETE',
+		success: function() {
+			window.location = '/';
+		}
+	});
+});
+</script>
 </body>
 </html>

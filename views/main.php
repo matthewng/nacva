@@ -53,7 +53,11 @@ padding: 20px 15px;
 <div>
 <check if="{{ @isActiveMember }}">
 <true>
-<div>You {{ @isClubManager?'manage':'are a member of' }} the <a href="/club/{{ @club.club_id }}">{{ @club.name }}</a> club.</div>
+<div>You {{ @isClubManager?'manage':'are a member of' }} the <a href="/club/{{ @club.club_id }}">{{ @club.name }}</a> club.
+<check if="{{ @numPendingMembers > 0 }}">
+<strong>({{ @numPendingMembers }} members pending)</strong>
+</check>
+</div>
 <br/>
 <repeat group="{{ @teams }}" value="{{ @team }}">
 <div>You are on <a href="/team/{{ @team.team_id }}">{{ @team.name }}</a> for the <a href="/tournament/{{ @team.tournament_id }}">{{ @team.tournament_name }}</a>.</div>
