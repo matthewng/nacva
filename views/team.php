@@ -3,24 +3,13 @@
 <title>Team | NACVA</title>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
 <style>
-html {
-position: relative;
-min-height: 100%;
-}
 body {
-margin-bottom: 60px;
-}
-.footer {
-position: fixed;
-bottom: 0;
-width: 100%;
-height: 60px;
-background-color: #f5f5f5;
+margin-bottom: 250px;
 }
 .container {
 width: auto;
 max-width: 680px;
-padding: 20px 15px;
+padding: 10px;
 }
 table {
 font-size:inherit;
@@ -29,7 +18,9 @@ font-size:inherit;
 </head>
 <body>
 <div class="container">
-<h2>{{ @team.name }}</h2>
+<div class="page-header">
+  <h1>{{ @team.name }}</h1>
+</div>
 
 <dl class="dl-horizontal">
 <dt>Tournament:</dt><dd><a href="/tournament/{{ @tournament.tournament_id }}">{{ @tournament.name }}</a></dd>
@@ -39,7 +30,7 @@ font-size:inherit;
 <br/><br/>
 
 <div>
-<h3>Team Roster</h3>
+<h3>Team roster</h3>
 <check if="{{ empty(@roster) }}">
 <true>
 <div><em>(The roster is empty)</em></div>
@@ -108,13 +99,16 @@ font-size:inherit;
 </check>
 </div>
 
-<footer class="footer">
-<div class="container menu">
-<span class="menu-item"><a href="/">Main</a></span> |
-<span class="menu-item"><a href="/profile">Profile</a></span> |
-<span class="menu-item"><a href="/logout">Logout</a></span>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+<div class="container">
+<ul class="nav nav-pills nav-justified">
+<li class="nav nav-pills nav-justified"><a href="/">Main</a></li>
+<li class="nav nav-pills nav-justified"><a href="/profile">Profile</a></li>
+<li class="nav nav-pills nav-justified"><a href="http://www.nacivt.com" target="_blank">Blog</a></li>
+<li class="nav nav-pills nav-justified"><a href="/logout">Logout</a></li>
+</ul>
 </div>
-</footer>
+</nav>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>

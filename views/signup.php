@@ -37,20 +37,20 @@ font-size: 16px;
 .form-signin .form-control:focus {
 z-index: 2;
 }
-.form-signin input[type="email"] {
+.form-signin .top-control {
 margin-bottom: -1px;
 border-bottom-right-radius: 0;
 border-bottom-left-radius: 0;
 }
-.form-signin #inputPassword {
+.form-signin .mid-control {
 margin-bottom: -1px;
 border-top-left-radius: 0;
 border-top-right-radius: 0;
 border-bottom-right-radius: 0;
 border-bottom-left-radius: 0;
 }
-.form-signin #inputConfirmPassword {
-margin-bottom: 10px;
+.form-signin .bottom-control {
+margin-bottom: 20px;
 border-top-left-radius: 0;
 border-top-right-radius: 0;
 }
@@ -62,11 +62,17 @@ border-top-right-radius: 0;
 <form class="form-signin" action="" method="POST">
 <h2 class="form-signin-heading">Register For An Account</h2>
 <label for="inputEmail" class="sr-only">Email address</label>
-<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus name="email" />
+<input type="email" id="inputEmail" class="form-control top-control" placeholder="Email address" required autofocus name="email" />
 <label for="inputPassword" class="sr-only">Password</label>
-<input type="password" id="inputPassword" class="form-control" placeholder="Password" required name="password">
+<input type="password" id="inputPassword" class="form-control mid-control" placeholder="Password" required name="password">
 <label for="inputPassword" class="sr-only">Confirm Password</label>
-<input type="password" id="inputConfirmPassword" class="form-control" placeholder="Confirm Password" required>
+<input type="password" id="inputConfirmPassword" class="form-control bottom-control" placeholder="Confirm Password" required>
+
+<label for="inputFirstName" class="sr-only">First Name</label>
+<input type="text" id="inputFirstName" class="form-control top-control" placeholder="First Name" name="first_name" required>
+<label for="inputLastName" class="sr-only">Last Name</label>
+<input type="text" id="inputLastName" class="form-control bottom-control" placeholder="Last Name" name="last_name" required>
+
 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
 </form>
 </div>

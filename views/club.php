@@ -3,24 +3,13 @@
 <title>Club | NACVA</title>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
 <style>
-html {
-position: relative;
-min-height: 100%;
-}
 body {
-margin-bottom: 60px;
-}
-.footer {
-position: fixed;
-bottom: 0;
-width: 100%;
-height: 60px;
-background-color: #f5f5f5;
+margin-bottom: 250px;
 }
 .container {
 width: auto;
 max-width: 680px;
-padding: 20px 15px;
+padding: 10px;
 }
 table {
 font-size:inherit;
@@ -30,10 +19,12 @@ font-size:inherit;
 
 <body>
 <div class="container">
-<h2>{{ @club.name }}</h2>
-<div>Managed by <a href="/profile/{{ @clubManager.profile_id }}">{{ @clubManager.first_name . ' ' . @clubManager.last_name }}</a></div>
+<div class="page-header">
+  <h1>{{ @club.name }}</h1>
+  <small>Managed by <a href="/profile/{{ @clubManager.profile_id }}">{{ @clubManager.first_name . ' ' . @clubManager.last_name }}</a></small>
+</div>
 
-<br/><hr>
+<br/>
 
 <div>
 <h3>Tournaments</h3>
@@ -147,19 +138,27 @@ font-size:inherit;
 
 <br/><hr>
 
-<div><button class="btn btn-danger" id="delete_club" type="button">DELETE CLUB</button></div>
+<h3>Administration</h3>
+<div class="row">
+<div class="col-sm-offset-8 col-sm-1">
+<button class="btn btn-danger" id="delete_club" type="button">DELETE CLUB</button></div>
+</div>
+<div class="col-sm-3"></div>
 </check>
 </div>
 
 </div>
 
-<footer class="footer">
-<div class="container menu">
-<span class="menu-item"><a href="/">Main</a></span> |
-<span class="menu-item"><a href="/profile">Profile</a></span> |
-<span class="menu-item"><a href="/logout">Logout</a></span>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+<div class="container">
+<ul class="nav nav-pills nav-justified">
+<li class="nav nav-pills nav-justified"><a href="/">Main</a></li>
+<li class="nav nav-pills nav-justified"><a href="/profile">Profile</a></li>
+<li class="nav nav-pills nav-justified"><a href="http://www.nacivt.com" target="_blank">Blog</a></li>
+<li class="nav nav-pills nav-justified"><a href="/logout">Logout</a></li>
+</ul>
 </div>
-</footer>
+</nav>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>

@@ -4,25 +4,16 @@
 <title>Profile | NACVA</title>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
 <style>
-<style>
-html {
-position: relative;
-min-height: 100%;
-}
 body {
-margin-bottom: 60px;
-}
-.footer {
-position: fixed;
-bottom: 0;
-width: 100%;
-height: 60px;
-background-color: #f5f5f5;
+margin-bottom: 250px;
 }
 .container {
 width: auto;
 max-width: 680px;
-padding: 20px 15px;
+padding: 10px;
+}
+table {
+font-size:inherit;
 }
 .verified {
 color:lightgreen;
@@ -34,12 +25,13 @@ font-size:20px;
 
 <body>
 <div class="container">
-<h2>Profile</h2>
-
-<hr>
 
 <check if="{{ @canEditProfile }}">
 <true>
+<div class="page-header">
+  <h1>Profile</h1>
+</div>
+
 <form action="" method="POST" class="form-horizontal">
 <div class="form-group"><label for="first_name" class="col-sm-3 control-label">First Name:</label><div class="col-sm-9"><input type="text" name="first_name" value="{{ @profile.first_name }}" class="form-control" /></div></div>
 <div class="form-group"><label for="last_name" class="col-sm-3 control-label">Last Name:</label><div class="col-sm-9"><input type="text" name="last_name" value="{{ @profile.last_name }}" class="form-control" /></div></div>
@@ -68,6 +60,9 @@ font-size:20px;
 <div class="form-group"><label for="phone_home" class="col-sm-3 control-label">Home phone:</label><div class="col-sm-9"><input type="tel" name="phone_home" value="{{ @profile.phone_home }}" class="form-control" /></div></div>
 <div class="form-group"><label for="phone_mobile" class="col-sm-3 control-label">Mobile phone:</label><div class="col-sm-9"><input type="tel" name="phone_mobile" value="{{ @profile.phone_mobile }}" class="form-control" /></div></div>
 <div class="form-group"><label for="dob" class="col-sm-3 control-label">Date of Birth:</label><div class="col-sm-9"><input type="date" name="dob" value="{{ @profile.dob }}" class="form-control" /></div></div>
+
+<br/><hr>
+<h3>Background</h3>
 <div class="form-group"><label for="school_name" class="col-sm-3 control-label">Current School:</label><div class="col-sm-9"><input type="text" name="school_name" value="{{ @profile.school_name }}" class="form-control" /></div></div>
 <div class="form-group"><label for="education_level" class="col-sm-3 control-label">Level of Education:</label><div class="col-sm-9">
 	<select name="education_level" class="form-control">
@@ -95,34 +90,60 @@ font-size:20px;
 </check>
 </div>
 </div>
+<div class="form-group"><label for="medical" class="col-sm-3 control-label">Medical Conditions:</label><div class="col-sm-9"><textarea name="medical" class="form-control">{{ @profile.medical }}</textarea></div></div>
+<div class="form-group"><label for="allergies" class="col-sm-3 control-label">Allergies:</label><div class="col-sm-9"><textarea name="allergies" class="form-control">{{ @profile.allergies }}</textarea></div></div>
+
+<br/><hr>
+<h3>Contact Information</h3>
 <div class="form-group"><label for="parent_name" class="col-sm-3 control-label">Parent/Guardian's Name:</label><div class="col-sm-9"><input type="text" name="parent_name" value="{{ @profile.parent_name }}" class="form-control" /></div></div>
 <div class="form-group"><label for="parent_address" class="col-sm-3 control-label">Parent/Guardian's Address:</label><div class="col-sm-9"><input type="text" name="parent_address" value="{{ @profile.parent_address }}" class="form-control" /></div></div>
 <div class="form-group"><label for="parent_phone" class="col-sm-3 control-label">Parent/Guardian's Phone:</label><div class="col-sm-9"><input type="tel" name="parent_phone" value="{{ @profile.parent_phone }}" class="form-control" /></div></div>
 <div class="form-group"><label for="parent_email" class="col-sm-3 control-label">Parent/Guardian's Email:</label><div class="col-sm-9"><input type="email" name="parent_email" value="{{ @profile.parent_email }}" class="form-control" /></div></div>
-<div class="form-group"><label for="medical" class="col-sm-3 control-label">Medical Conditions:</label><div class="col-sm-9"><textarea name="medical" class="form-control">{{ @profile.medical }}</textarea></div></div>
-<div class="form-group"><label for="allergies" class="col-sm-3 control-label">Allergies:</label><div class="col-sm-9"><textarea name="allergies" class="form-control">{{ @profile.allergies }}</textarea></div></div>
 <div class="form-group"><label for="emergency_name" class="col-sm-3 control-label">Emergency Contact's Name:</label><div class="col-sm-9"><input type="text" name="emergency_name" value="{{ @profile.emergency_name }}" class="form-control" /></div></div>
 <div class="form-group"><label for="emergency_phone" class="col-sm-3 control-label">Emergency Contact's Phone:</label><div class="col-sm-9"><input type="tel" name="emergency_phone" value="{{ @profile.emergency_phone }}" class="form-control" /></div></div>
 <div class="form-group"><label for="emergency_relationship" class="col-sm-3 control-label">Relation to Emergency Contact:</label><div class="col-sm-9"><input type="text" name="emergency_relationship" value="{{ @profile.emergency_relationship }}" class="form-control" /></div></div>
+
+<br/><br/>
+
 <div class="form-group"><div class="col-sm-offset-3 col-sm-9"><button type="submit" class="form-control btn-success">Submit</button></div></div>
 </form>
 </true>
 <false>
+<div class="page-header">
+  <h1>{{ @profile.first_name }} {{ @profile.last_name }}</h1>
+</div>
 <div>
-<div>First name: {{ @profile.first_name }}</div>
-<div>Last name: {{ @profile.last_name }}</div>
+<div class="media">
+<span class="glyphicon glyphicon-user media-left" aria-hidden="true" style="color:navy;font-size:140px;padding-left:20px;"></span>
+<div class="media-body">
+<dl class="dl-horizontal">
+<dt>Club:</dt><dd><a>New York Strangers</a></dd>
+<br/>
+<dt>Teams:</dt>
+<dd>
+<div><a>New York Strangers Lo Chai</a> (<a>New York Nationals 2015</a>)</div>
+<div><a>New York Strangers A</a> (<a>New York Mini 2015</a>)</div>
+<div><a>New York Strangers A</a> (<a>Las Vegas Nationals 2014</a>)</div>
+<div><a>New York Strangers A</a> (<a>New York Mini 2014</a>)</div>
+</dd>
+</dl>
+</div>
+</div>
 </div>
 </false>
 </check>
 </div>
 
-<footer class="footer">
-<div class="container menu">
-<span class="menu-item"><a href="/">Main</a></span> |
-<span class="menu-item"><a href="/profile">Profile</a></span> |
-<span class="menu-item"><a href="/logout">Logout</a></span>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+<div class="container">
+<ul class="nav nav-pills nav-justified">
+<li class="nav nav-pills nav-justified"><a href="/">Main</a></li>
+<li class="nav nav-pills nav-justified active"><a href="/profile">Profile</a></li>
+<li class="nav nav-pills nav-justified"><a href="http://www.nacivt.com" target="_blank">Blog</a></li>
+<li class="nav nav-pills nav-justified"><a href="/logout">Logout</a></li>
+</ul>
 </div>
-</footer>
+</nav>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 

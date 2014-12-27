@@ -71,6 +71,8 @@ $f3->route('POST /signup',
 		
 		$profile = new DB\SQL\Mapper($db, 'profiles');
 		$profile->account_id = $account->account_id;
+		$profile->first_name = $f3->get('POST.first_name');
+		$profile->last_name = $f3->get('POST.last_name');
 		$profile->save();
 		
 		if(!$account->dry() && !$profile->dry()) {
@@ -435,7 +437,7 @@ $f3->route('DELETE /club',
 		);
 		
 		$club = new DB\SQL\Mapper($db, 'clubs');
-		$club->load(array('creator_account_id=?', $f3->get('SESSION.accountId'));
+		$club->load(array('creator_account_id=?', $f3->get('SESSION.accountId')));
 		
 		if(!$club->dry()) {
 			$db->begin();
@@ -492,10 +494,9 @@ $f3->route('POST /club/leave',
 		$club_member->load(array('account_id=? 
 			AND status IN (\'ACTIVE\', \'PENDING\')', $account->account_id));
 		if(!$club_member->dry()) {
-			if(!$club->dry()) {
 			$db->begin();
 			$db->exec('DELETE p FROM players p WHERE p.account_id=?', $account->account_id);
-			$db->exec('UPDATE club_members SET status = \'CANCELED\' WHERE account_id=?', $account->account_id));
+			$db->exec('UPDATE club_members SET status = \'CANCELED\' WHERE account_id=?', $account->account_id);
 			$db->commit();
 		}
 
